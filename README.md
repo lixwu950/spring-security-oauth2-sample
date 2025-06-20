@@ -35,6 +35,7 @@ Server.
 - [OAuth 2.0 Device Authorization Grant](https://relive27.github.io/blog/oauth2-device-flow)
 - [Register a client dynamically](https://relive27.github.io/blog/oauth2-dynamic-client-registration)
 - [How to Protect and Manage Spring Authorization Server JWT Keys with Vault](https://relive27.github.io/blog/oauth2-vault)
+- [(TODO)OAuth2 + mTLS: Strengthening Client Authentication Security]()
 - ...
 
 ## Description of applicable version

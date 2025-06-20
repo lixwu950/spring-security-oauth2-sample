@@ -34,6 +34,7 @@ Security 6 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 - [OAuth2.0 设备授权流程](https://relive27.github.io/blog/oauth2-device-flow)
 - [动态注册客户端](https://relive27.github.io/blog/oauth2-dynamic-client-registration)
 - [如何用 Vault 保护和管理 Spring Authorization Server JWT 密钥](https://relive27.github.io/blog/oauth2-vault)
+- [(待办)OAuth2 + mTLS：实现更强客户端认证安全机制]()
 - ...
 
 ## 适用版本说明
