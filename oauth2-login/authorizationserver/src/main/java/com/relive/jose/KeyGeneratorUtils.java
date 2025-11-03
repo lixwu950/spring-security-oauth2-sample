@@ -1,5 +1,8 @@
 package com.relive.jose;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.math.BigInteger;
@@ -12,10 +15,13 @@ import java.security.spec.EllipticCurve;
 
 final class KeyGeneratorUtils {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(KeyGeneratorUtils.class);
+
     private KeyGeneratorUtils() {
     }
 
     static SecretKey generateSecretKey() {
+        LOGGER.info("generateSecretKey11");
         SecretKey hmacKey;
         try {
             hmacKey = KeyGenerator.getInstance("HmacSha256").generateKey();
@@ -26,6 +32,7 @@ final class KeyGeneratorUtils {
     }
 
     static KeyPair generateRsaKey() {
+        LOGGER.info("generateRsaKey222");
         KeyPair keyPair;
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");

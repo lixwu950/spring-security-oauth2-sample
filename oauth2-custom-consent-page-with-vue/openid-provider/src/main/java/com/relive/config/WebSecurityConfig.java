@@ -92,7 +92,7 @@ public class WebSecurityConfig {
                 .clientSecret("123456") // GitHub 应用的 clientSecret
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC) // 客户端认证方式
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE) // 授权码模式
-                .redirectUri("http://localhost:9528/oauth2/callback") // 重定向 URI
+                .redirectUri("http://127.0.0.1:9528/oauth2/callback") // 重定向 URI
                 .scope(new String[]{"read:user"}) // 申请的权限范围
                 .authorizationUri("https://github.com/login/oauth/authorize") // 授权地址
                 .tokenUri("https://github.com/login/oauth/access_token") // 令牌获取地址

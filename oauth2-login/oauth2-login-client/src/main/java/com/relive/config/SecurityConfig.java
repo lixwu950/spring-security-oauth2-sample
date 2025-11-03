@@ -1,5 +1,6 @@
 package com.relive.config;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,6 +11,9 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -72,5 +76,38 @@ public class SecurityConfig {
                 .roles("SYSTEM")
                 .build();
         return new InMemoryUserDetailsManager(user);
+    }
+
+    @Bean
+    public CommandLineRunner checkOAuth2Config(ClientRegistrationRepository clientRegistrations) {
+        return args -> {
+            System.out.println("=== Available OAuth2 Clients ===");
+
+            if (clientRegistrations instanceof InMemoryClientRegistrationRepository) {
+                Iterable<ClientRegistration> registrations =
+                        (InMemoryClientRegistrationRepository) clientRegistrations;
+
+                Iterator<ClientRegistration> iterator = registrations.iterator();
+                if (!iterator.hasNext()) {
+                    System.out.println("No OAuth2 client registrations configured!");
+                    return;
+                }
+
+                while (iterator.hasNext()) {
+                    ClientRegistration registration = iterator.next();
+                    System.out.println("Registration ID: " + registration.getRegistrationId());
+                    System.out.println("Client ID: " + registration.getClientId());
+                    System.out.println("Client Secret: " + (registration.getClientSecret() != null ? "***" : "null"));
+                    System.out.println("Redirect URI: " + registration.getRedirectUri());
+                    System.out.println("Authorization Grant Type: " + registration.getAuthorizationGrantType());
+                    System.out.println("Scopes: " + registration.getScopes());
+                    System.out.println("Provider: " + registration.getProviderDetails());
+                    System.out.println("---");
+                }
+            } else {
+                System.out.println("Unexpected ClientRegistrationRepository type: " +
+                        clientRegistrations.getClass().getName());
+            }
+        };
     }
 }

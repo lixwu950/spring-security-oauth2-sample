@@ -17,7 +17,7 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope: profile
-            client-name: messaging-client-authorization-code
+            client-name: relive-client
         provider:
           client-provider:
             authorization-uri: http://127.0.0.1:8080/oauth2/authorize

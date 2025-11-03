@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.List;
+
 /**
  * @author: ReLive
  * @date: 2022/6/24 4:22 下午
@@ -29,7 +31,24 @@ public class DefaultSecurityConfig {
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+
+        http.cors(cors -> cors.configurationSource(request -> {
+            var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+            corsConfig.setAllowedOrigins(List.of("http://127.0.0.1:8070"));
+            corsConfig.setAllowedMethods(List.of("GET", "POST"));
+            corsConfig.setAllowCredentials(true);
+            corsConfig.setAllowedHeaders(List.of("*"));
+            return corsConfig;
+        }));
+
+        // 禁用CSRF方便测试授权码流程
+        http.csrf(csrf -> csrf.disable());
+
+        // 登录页面使用默认 formLogin
+        http.formLogin(Customizer.withDefaults());
+
         return http.build();
+
     }
 
     @Bean

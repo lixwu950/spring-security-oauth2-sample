@@ -62,7 +62,7 @@ public class OAuth2ClientRegistrationEvent implements ApplicationListener<Applic
     @SneakyThrows
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        URI clientsEndpoint = new URI("http://localhost:8080/connect/register"); // 客户端注册端点
+        URI clientsEndpoint = new URI("http://127.0.0.1:8080/connect/register"); // 客户端注册端点
 
         // 构建客户端元数据（如名称、重定向地址、授权类型、scope 等）
         OIDCClientMetadata clientMetadata = new OIDCClientMetadata();
