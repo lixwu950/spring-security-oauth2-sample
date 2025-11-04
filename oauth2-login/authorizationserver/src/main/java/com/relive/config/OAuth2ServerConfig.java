@@ -79,7 +79,7 @@ public class OAuth2ServerConfig {
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("relive-client")
-                .clientSecret("{noop}relive-client")
+                .clientSecret("{noop}relive-client-secret")
                 .clientAuthenticationMethods(authMethods -> {
                     authMethods.add(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
                     authMethods.add(ClientAuthenticationMethod.CLIENT_SECRET_POST);
@@ -88,6 +88,7 @@ public class OAuth2ServerConfig {
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .redirectUri("http://127.0.0.1:8070/login/oauth2/code/relive-client")
                 .scope(OidcScopes.PROFILE)
+                .scope(OidcScopes.EMAIL)
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(true)
                         .build())

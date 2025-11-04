@@ -10,13 +10,13 @@ spring:
     oauth2:
       client:
         registration:
-          messaging-client-authorization-code:
+          relive-client:
             provider: client-provider
             client-id: relive-client
-            client-secret: relive-client
+            client-secret: relive-client-secret
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope: profile
+            scope: profile,email
             client-name: relive-client
         provider:
           client-provider:

@@ -9,3 +9,6 @@ oauth2:
   client-secret: relive-client-secret
   token-uri: http://localhost:8080/oauth2/token
   redirect-uri: http://127.0.0.1:8070/login/oauth2/code/relive-client
+spring:
+  main:
+    allow-bean-definition-overriding: true

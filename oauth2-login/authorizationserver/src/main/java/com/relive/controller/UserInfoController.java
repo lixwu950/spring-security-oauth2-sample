@@ -18,7 +18,7 @@ import java.util.Map;
 public class UserInfoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserInfoController.class);
 
-    @PostMapping("/userInfo")
+    @PostMapping("userInfo")
     public Map<String, Object> getUserInfo(@AuthenticationPrincipal Jwt jwt) {
         LOGGER.info("getUserInfo, jwt: {}", jwt);
         return Collections.singletonMap("data", jwt.getClaims());
