@@ -25,10 +25,12 @@ spring:
             user-info-uri: http://127.0.0.1:8080/userInfo
             user-name-attribute: data.sub
             user-info-authentication-method: form
-
+  main:
+    allow-bean-definition-overriding: true
 logging:
   level:
     root: INFO
     org.springframework.web: INFO
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
+

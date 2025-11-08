@@ -111,13 +111,5 @@ public class OAuth2ServerConfig {
                 .build();
     }
 
-    /**
-     * JWKSource，用于 JWT 签名
-     */
-    @Bean
-    public JWKSource<SecurityContext> jwkSource() {
-        RSAKey rsaKey = Jwks.generateRsa();
-        JWKSet jwkSet = new JWKSet(rsaKey);
-        return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
-    }
+
 }
